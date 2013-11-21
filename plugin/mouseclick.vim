@@ -36,13 +36,18 @@ function! s:Open()
 	" sil exe "! open " . word
 endfunction
 
-" nnoremap <S-LeftMouse> :call CustomLoad()
-" nmap <silent> <S-LeftMouse> :exe "! open ". expand("<cWORD>")<CR>
 
-" for macosx macvim:
-sil exec "! defaults write org.vim.MacVim MMTranslateCtrlClick 0"
+" http://stackoverflow.com/questions/10139972/vim-hasmacunix-or-hasmac-do-not-work
+let os=substitute(system('uname'), '\n', '', '')
+if os == 'Darwin' || os == 'Mac'
+	" for macosx macvim:
+	sil exec "! defaults write org.vim.MacVim MMTranslateCtrlClick 0"
 
-" http://stackoverflow.com/questions/7504337/how-do-i-remap-control-shift-leftmouse-in-gvim/
+	if !exists("g:utl_cfg_hdl_scm_http_system")
+		let g:utl_cfg_hdl_scm_http_system = "silent !open '%u#%f'"
+	endif
+endif
+
 
 map <C-LeftMouse> <LeftMouse> :call <SID>Open()<CR>
 imap <C-LeftMouse> <LeftMouse><ESC> :call <SID>Open()<CR>i
