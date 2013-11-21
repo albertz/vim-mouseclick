@@ -15,6 +15,13 @@
 "   map keys:
 "     http://stackoverflow.com/questions/3776117/vim-what-is-the-difference-between-the-remap-noremap-nnoremap-and-vnoremap-ma
 "
+"
+" discussion:
+"   https://groups.google.com/forum/#!topic/vim_mac/7uXkwq7kJ_4
+"   http://superuser.com/questions/667821/macvim-make-urls-clickable
+
+" It needs [utl](http://www.vim.org/scripts/script.php?script_id=293),
+" not sure how to check for that.
 
 if &compatible
 	finish
