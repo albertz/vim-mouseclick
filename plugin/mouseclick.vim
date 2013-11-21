@@ -15,12 +15,6 @@
 "   map keys:
 "     http://stackoverflow.com/questions/3776117/vim-what-is-the-difference-between-the-remap-noremap-nnoremap-and-vnoremap-ma
 "
-" vim: fdm=marker:noet:ts=4:sw=4:sts=4
-"
-" :map <LeftMouse> yiW
-" :help mouse-overview
-" :map <2-LeftMouse> :exe "! open ". expand("<cWORD>")<CR> 
-"
 
 if &compatible
 	finish
@@ -36,18 +30,10 @@ let g:loaded_VimMouseClick = 1
 let s:save_cpo = &cpo
 set cpo&vim
 
-" http://stackoverflow.com/questions/7686115/vim-add-clickable-label
-function! s:CustomLoad()
-    let word = expand("<cword>")
-    let path = "/path/to/file/to/be/opened"
-    if ( word == "special_keyword" && filereadable(path) )
-        sil exe "split " . path
-    endif
-endfunction
-
 function! s:Open()
 	let word = expand("<cWORD>")
-	sil exe "! open " . word
+	exec ":Utl openLink " . word
+	" sil exe "! open " . word
 endfunction
 
 " nnoremap <S-LeftMouse> :call CustomLoad()
@@ -60,7 +46,10 @@ sil exec "! defaults write org.vim.MacVim MMTranslateCtrlClick 0"
 
 map <C-LeftMouse> <LeftMouse> :call <SID>Open()<CR>
 imap <C-LeftMouse> <LeftMouse><ESC> :call <SID>Open()<CR>i
-" map <M-LeftMouse> :call MouseClick_Open()<CR>
 
 let &cpo = s:save_cpo
+
+
+
+" vim: fdm=marker:noet:ts=4:sw=4:sts=4
 
